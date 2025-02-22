@@ -1,0 +1,6 @@
+framework module LexiMind {
+    umbrella header "LexiMind.h"
+    
+    export *
+    module * { export * }
+} 

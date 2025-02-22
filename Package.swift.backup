@@ -1,0 +1,40 @@
+// swift-tools-version:5.7
+import PackageDescription
+
+let package = Package(
+    name: "LexiMind",
+    defaultLocalization: "tr",
+    platforms: [
+        .iOS(.v15)
+    ],
+    products: [
+        .library(
+            name: "LexiMindCore",
+            targets: ["LexiMindCore"]),
+        .library(
+            name: "LexiMindUI",
+            targets: ["LexiMindUI"])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "10.0.0"),
+        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.0.0"),
+        .package(url: "https://github.com/SwiftKickMobile/SwiftMessages.git", from: "9.0.0")
+    ],
+    targets: [
+        .target(
+            name: "LexiMindCore",
+            dependencies: [
+                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk")
+            ],
+            path: "Sources/Core"
+        ),
+        .target(
+            name: "LexiMindUI",
+            dependencies: [
+                "LexiMindCore",
+                .product(name: "Kingfisher", package: "Kingfisher")
+            ],
+            path: "Sources/UI"
+        )
+    ]
+) 
